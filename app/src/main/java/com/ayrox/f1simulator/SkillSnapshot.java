@@ -2,12 +2,5 @@ package com.ayrox.f1simulator;
 
 public class SkillSnapshot {
     int year;
-    int pace;
-    int consistency;
-    int overtaking;
-    int defending;
-    int tyreManagement;
-    int wetWeather;
-    int composure;
-    int developmentSkill;
+    DriverSkills skills; // Contient directement un "instantané" de l'objet DriverSkills
 }

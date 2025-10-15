@@ -33,7 +33,8 @@ public class GameWorld {
         hamilton.firstName = "Lewis";
         hamilton.lastName = "Hamilton";
         hamilton.age = 40;
-        hamilton.pace = 95;
+        hamilton.currentSkills = new DriverSkills();
+        hamilton.currentSkills.pace = 95;
 
         // Création de l'écurie Ferrari
         Team ferrari = new Team();
@@ -47,7 +48,8 @@ public class GameWorld {
         leclerc.firstName = "Charles";
         leclerc.lastName = "Leclerc";
         leclerc.age = 26;
-        leclerc.pace = 95;
+        leclerc.currentSkills = new DriverSkills();
+        leclerc.currentSkills.pace = 95;
 
         // On lie le pilote à l'écurie et on ajoute l'écurie au monde
         ferrari.drivers.add(leclerc);

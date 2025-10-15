@@ -1,24 +1,13 @@
 package com.ayrox.f1simulator;
 import java.util.List;
 
-public class Driver {
+public class Driver extends Person{
 
-    // === Identity ===
-    String firstName;
-    String lastName;
-    int age;
-    String nationality;
+    // === Contract ===
     List<Contract> contractHistory;
 
     // === Skills ===
-    int pace;
-    int consistency;
-    int overtaking;
-    int defending;
-    int tyreManagement;
-    int wetWeather;
-    int composure;
-    int developmentSkill;
+    DriverSkills currentSkills;
 
     // === Career & Progression ===
     int potential;

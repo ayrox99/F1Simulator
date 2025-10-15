@@ -26,12 +26,22 @@ public class MainActivity extends AppCompatActivity {
         // On crée notre monde, le constructeur fait tout le travail !
         GameWorld world = new GameWorld();
 
-        // On utilise Log.d pour afficher le résultat (plus propre)
-        Log.d("MainActivity", "Monde créé pour l'année : " + world.currentYear);
-        Log.d("MainActivity", "Nombre d'écuries : " + world.allTeams.size());
-        for (int i = 0; i < world.allTeams.size(); i++) {
-            Log.d("MainActivity", "Ecurie " + i + " : " + world.allTeams.get(i).name);
+        Log.d("Caca", "===== DÉBUT DE LA VÉRIFICATION DU MONDE =====");
+        Log.d("Caca", "Année en cours : " + world.currentYear);
+        Log.d("Caca", "Nombre total d'écuries : " + world.allTeams.size());
+
+// On utilise une boucle "for" pour parcourir chaque écurie
+        for (Team team : world.allTeams) {
+            // Pour chaque écurie, on affiche son nom
+            Log.d("Caca", "Écurie: " + team.name + " (" + team.drivers.size() + " pilotes)");
+
+            // On fait une deuxième boucle à l'intérieur pour parcourir les pilotes de CETTE écurie
+            for (Driver driver : team.drivers) {
+                Log.d("Caca", "  - Pilote: " + driver.firstName + " " + driver.lastName);
+            }
         }
+        Log.d("Caca", "===== FIN DE LA VÉRIFICATION DU MONDE =====");
+
     }
 
 
