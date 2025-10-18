@@ -2,7 +2,7 @@ package com.ayrox.f1simulator;
 
 import java.util.List;
 
-public class TechnicalChief extends Person{
+public class TechnicalChief extends AgeablePerson {
 
     // === Skills ===
     int aeroSpecialty;

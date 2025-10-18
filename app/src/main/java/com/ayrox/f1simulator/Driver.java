@@ -1,7 +1,7 @@
 package com.ayrox.f1simulator;
 import java.util.List;
 
-public class Driver extends Person{
+public class Driver extends AgeablePerson {
 
     // === Contract ===
     List<Contract> contractHistory;
@@ -14,5 +14,5 @@ public class Driver extends Person{
     List<SkillSnapshot> skillProgressionHistory;
 
     // === History ===
-    List<SeasonHistory> careerHistory;
+    List<DriverSeasonHistory> careerHistory;
 }

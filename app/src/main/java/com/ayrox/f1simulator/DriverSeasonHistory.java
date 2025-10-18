@@ -1,6 +1,6 @@
 package com.ayrox.f1simulator;
 
-public class SeasonHistory {
+public class DriverSeasonHistory {
     int year;
     Team team;
     int finalRanking;
