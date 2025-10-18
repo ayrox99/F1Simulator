@@ -51,11 +51,21 @@ public class GameWorld {
         leclerc.currentSkills = new DriverSkills();
         leclerc.currentSkills.pace = 95;
 
+        // Création de l'écurie RedBull
+        Team redbull = new Team();
+        redbull.name = "Red Bull";
+        redbull.base = "Angleterre";
+        redbull.budget = 500000000.0;
+        redbull.drivers = new ArrayList<>();
+
         // On lie le pilote à l'écurie et on ajoute l'écurie au monde
         ferrari.drivers.add(leclerc);
         mercedes.drivers.add(hamilton);
         this.allTeams.add(ferrari);
         this.allTeams.add(mercedes);
+        this.allTeams.add(redbull);
+
+
 
     }
     // On ajoutera plus tard les pilotes à la retraite, les jeunes qui attendent, etc.

@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -23,24 +25,24 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // On crée notre monde, le constructeur fait tout le travail !
+
+        // 1. On crée notre monde, le constructeur fait tout le travail !
         GameWorld world = new GameWorld();
 
-        Log.d("Caca", "===== DÉBUT DE LA VÉRIFICATION DU MONDE =====");
-        Log.d("Caca", "Année en cours : " + world.currentYear);
-        Log.d("Caca", "Nombre total d'écuries : " + world.allTeams.size());
+        // 2. On récupère la référence vers notre RecyclerView dans le layout
+        // C'est le pont entre le fichier XML et notre code Java
+        RecyclerView teamsRecyclerView = findViewById(R.id.teamsRecyclerView);
 
-// On utilise une boucle "for" pour parcourir chaque écurie
-        for (Team team : world.allTeams) {
-            // Pour chaque écurie, on affiche son nom
-            Log.d("Caca", "Écurie: " + team.name + " (" + team.drivers.size() + " pilotes)");
+        // 3. On crée notre adaptateur en lui donnant la liste des écuries
+        TeamAdapter adapter = new TeamAdapter(world.allTeams);
 
-            // On fait une deuxième boucle à l'intérieur pour parcourir les pilotes de CETTE écurie
-            for (Driver driver : team.drivers) {
-                Log.d("Caca", "  - Pilote: " + driver.firstName + " " + driver.lastName);
-            }
-        }
-        Log.d("Caca", "===== FIN DE LA VÉRIFICATION DU MONDE =====");
+        // 4. On dit au RecyclerView comment afficher les éléments.
+        // On veut une liste verticale simple, on utilise donc un LinearLayoutManager.
+        teamsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // 5. ET VOILÀ : On branche l'adaptateur au RecyclerView !
+        // C'est cette ligne qui fait toute la magie.
+        teamsRecyclerView.setAdapter(adapter);
 
     }
 
