@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TeamAdapter.OnItemClickListener {
+
+    private GameWorld world;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 1. On crée notre monde, le constructeur fait tout le travail !
-        GameWorld world = new GameWorld();
+        this.world = new GameWorld();
 
         // 2. On récupère la référence vers notre RecyclerView dans le layout
         // C'est le pont entre le fichier XML et notre code Java
@@ -35,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         // 3. On crée notre adaptateur en lui donnant la liste des écuries
         TeamAdapter adapter = new TeamAdapter(world.allTeams);
+
+        // NOUVEAU : On dit à l'adaptateur que "cette classe" (this) écoute les clics
+        adapter.setOnItemClickListener(this);
 
         // 4. On dit au RecyclerView comment afficher les éléments.
         // On veut une liste verticale simple, on utilise donc un LinearLayoutManager.
@@ -44,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
         // C'est cette ligne qui fait toute la magie.
         teamsRecyclerView.setAdapter(adapter);
 
+    }
+
+    // NOUVEAU : On doit OBLIGATOIREMENT ajouter cette méthode car on a "signé le contrat"
+    @Override
+    public void onItemClick(int position) {
+        // Le "position" nous dit quel item a été cliqué
+        // On récupère l'écurie correspondante dans notre liste
+        Team clickedTeam = world.allTeams.get(position);
+
+        // On affiche un log pour vérifier !
+        Log.d("Prout", "Clic détecté sur : " + clickedTeam.name);
     }
 
 

@@ -15,6 +15,20 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     // 2. L'adapter a besoin d'une référence à la liste de données qu'il doit afficher
     private List<Team> teamList;
 
+    // On définit une "interface" : un contrat que notre Activity devra signer.
+    // Elle oblige à avoir une méthode "onItemClick".
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    // Une variable pour stocker la personne (l'Activity) qui écoute nos clics.
+    private OnItemClickListener listener;
+
+    // Une méthode pour permettre à l'Activity de s'enregistrer comme "écouteur".
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     // Le constructeur de l'adapter : il reçoit la liste de données en paramètre
     public TeamAdapter(List<Team> teamList) {
         this.teamList = teamList;
@@ -22,13 +36,27 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     // 3. Le ViewHolder : C'est une classe interne qui représente UNE SEULE ligne de la liste.
     // Son rôle est de garder en mémoire les composants de l'interface d'une ligne (ici, juste un TextView).
-    public static class TeamViewHolder extends RecyclerView.ViewHolder {
+    public class TeamViewHolder extends RecyclerView.ViewHolder {
         public TextView teamNameTextView;
 
         public TeamViewHolder(@NonNull View itemView) {
             super(itemView);
             // On fait le lien avec notre composant dans item_team.xml
             teamNameTextView = itemView.findViewById(R.id.teamNameTextView);
+
+            // On ajoute un détecteur de clic sur la VUE ENTIÈRE de la ligne ("itemView").
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // On récupère la position de l'élément cliqué
+                    int position = getAdapterPosition();
+                    // On vérifie que notre "écouteur" existe et que la position est valide
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        // On appelle la méthode de l'interface, en passant la position !
+                        listener.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 
