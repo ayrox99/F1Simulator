@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class TeamDetailActivity extends AppCompatActivity {
 
@@ -33,7 +35,20 @@ public class TeamDetailActivity extends AppCompatActivity {
         // On vérifie que l'écurie a bien été trouvée
         if (currentTeam != null) {
             teamNameTextView.setText(currentTeam.name);
-            // C'est ici qu'on pourra bientôt afficher la liste des pilotes !
+
+            // --- NOUVEAU : On branche la liste des pilotes ---
+
+            // 1. On récupère la référence du nouveau RecyclerView
+            RecyclerView driversRecyclerView = findViewById(R.id.driversRecyclerView);
+
+            // 2. On crée le nouvel adaptateur en lui passant la liste des pilotes de l'écurie
+            DriverAdapter driverAdapter = new DriverAdapter(currentTeam.drivers);
+
+            // 3. On lui dit comment s'afficher (liste verticale)
+            driversRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            // 4. On branche l'adaptateur !
+            driversRecyclerView.setAdapter(driverAdapter);
         }
     }
 }
