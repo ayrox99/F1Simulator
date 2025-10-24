@@ -5,8 +5,8 @@ import java.util.List;
 
 public class GameWorld {
 
+    // --- Singleton ---
     private static GameWorld instance;
-
     public static GameWorld getInstance() {
         if (instance == null) {
             instance = new GameWorld();
@@ -14,71 +14,77 @@ public class GameWorld {
         return instance;
     }
 
+    // --- Données du monde ---
     int currentYear;
-
     List<Driver> allDrivers;
     List<Team> allTeams;
     List<TechnicalChief> allTechnicalChiefs;
+    List<Track> allTracks; // <-- NOUVEAU
 
-    // NOUVEAU : Le constructeur de la classe
+    // Constructeur privé (Singleton)
     private GameWorld() {
         this.currentYear = 2025;
         this.allTeams = new ArrayList<>();
         this.allDrivers = new ArrayList<>();
         this.allTechnicalChiefs = new ArrayList<>();
+        this.allTracks = new ArrayList<>();
 
-        // --- CRÉATION DES PILOTES (Maintenant beaucoup plus simple !) ---
-        // Génère 2 pilotes "star" avec des stats entre 85 et 99
-        Driver driver1 = new Driver(85, 99);
-        Driver driver2 = new Driver(83, 98);
+        // --- NOUVEAU : Création des circuits ---
+        // Un circuit rapide (type Monza)
+        Track monza = new Track("Monza", 0.2, 0.6, 0.2); // 60% Moteur
+        // Un circuit technique (type Monaco)
+        Track monaco = new Track("Monaco", 0.3, 0.1, 0.6); // 60% Châssis
+        this.allTracks.add(monza);
+        this.allTracks.add(monaco);
 
-        // Génère 2 pilotes "milieu de grille" avec des stats entre 70 et 85
-        Driver driver3 = new Driver(70, 85);
-        Driver driver4 = new Driver(72, 84);
 
-        // --- CRÉATION DES ÉCURIES (Inchangé, mais on utilise les pilotes générés) ---
-        Team teamA = new Team();
-        teamA.name = "Écurie A";
-        teamA.drivers = new ArrayList<>();
-        teamA.drivers.add(driver1);
-        teamA.drivers.add(driver3);
-        // On met des stats de voiture pour le test
-        teamA.aeroPerformance = 90;
-        teamA.enginePerformance = 95;
-        teamA.chassisPerformance = 88;
-        teamA.reliability = 92;
+        // --- CRÉATION DES PILOTES (avec ton constructeur aléatoire) ---
+        Driver driver1 = new Driver(85, 99); // Pilote star 1
+        Driver driver2 = new Driver(83, 98); // Pilote star 2
+        Driver driver3 = new Driver(70, 85); // Milieu de grille 1
+        Driver driver4 = new Driver(72, 84); // Milieu de grille 2
 
-        Team teamB = new Team();
-        teamB.name = "Écurie B";
-        teamB.drivers = new ArrayList<>();
-        teamB.drivers.add(driver2);
-        teamB.drivers.add(driver4);
-        // Stats de voiture
-        teamB.aeroPerformance = 92;
-        teamB.enginePerformance = 93;
-        teamB.chassisPerformance = 90;
-        teamB.reliability = 90;
-
-        // On ajoute tout au monde
-        this.allTeams.add(teamA);
-        this.allTeams.add(teamB);
         this.allDrivers.add(driver1);
         this.allDrivers.add(driver2);
         this.allDrivers.add(driver3);
         this.allDrivers.add(driver4);
+
+        // --- CRÉATION DES ÉCURIES ---
+        Team teamA = new Team();
+        teamA.name = "Écurie A (Performante Moteur)";
+        teamA.drivers = new ArrayList<>();
+        teamA.drivers.add(driver1);
+        teamA.drivers.add(driver3);
+        teamA.enginePerformance = 95; // Point fort
+        teamA.aeroPerformance = 85;
+        teamA.chassisPerformance = 80; // Point faible
+        teamA.reliability = 90;
+
+        Team teamB = new Team();
+        teamB.name = "Écurie B (Performante Châssis)";
+        teamB.drivers = new ArrayList<>();
+        teamB.drivers.add(driver2);
+        teamB.drivers.add(driver4);
+        teamB.enginePerformance = 85; // Point faible
+        teamB.aeroPerformance = 88;
+        teamB.chassisPerformance = 95; // Point fort
+        teamB.reliability = 90;
+
+        this.allTeams.add(teamA);
+        this.allTeams.add(teamB);
     }
 
-    // --- NOUVEAU : Une méthode pratique ---
+    // --- Méthodes utilitaires ---
     public Team findTeamByName(String name) {
         for (Team team : allTeams) {
             if (team.name.equals(name)) {
                 return team;
             }
         }
-        return null; // Si on ne trouve pas l'écurie
+        return null;
     }
+
     // On ajoutera plus tard les pilotes à la retraite, les jeunes qui attendent, etc.
     // List<Driver> retiredDrivers;
     // List<Driver> youngDriversPool;
-
 }
