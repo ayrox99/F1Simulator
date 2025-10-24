@@ -1,5 +1,6 @@
 package com.ayrox.f1simulator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements TeamAdapter.OnIte
         });
 
         // 1. On crée notre monde, le constructeur fait tout le travail !
-        this.world = new GameWorld();
+        this.world = GameWorld.getInstance();
 
         // 2. On récupère la référence vers notre RecyclerView dans le layout
         // C'est le pont entre le fichier XML et notre code Java
@@ -58,8 +59,16 @@ public class MainActivity extends AppCompatActivity implements TeamAdapter.OnIte
         // On récupère l'écurie correspondante dans notre liste
         Team clickedTeam = world.allTeams.get(position);
 
-        // On affiche un log pour vérifier !
-        Log.d("Prout", "Clic détecté sur : " + clickedTeam.name);
+        // Au lieu de juste logger, on prépare une "intention" de démarrer un nouvel écran
+        Intent intent = new Intent(this, TeamDetailActivity.class);
+
+        // On attache des informations à cette intention.
+        // C'est comme mettre une note sur une enveloppe.
+        // On passe le nom de l'écurie cliquée.
+        intent.putExtra("TEAM_NAME_EXTRA", clickedTeam.name);
+
+        // On exécute l'intention !
+        startActivity(intent);
     }
 
 

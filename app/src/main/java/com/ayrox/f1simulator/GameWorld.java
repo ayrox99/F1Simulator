@@ -5,6 +5,15 @@ import java.util.List;
 
 public class GameWorld {
 
+    private static GameWorld instance;
+
+    public static GameWorld getInstance() {
+        if (instance == null) {
+            instance = new GameWorld();
+        }
+        return instance;
+    }
+
     int currentYear;
 
     List<Driver> allDrivers;
@@ -12,7 +21,7 @@ public class GameWorld {
     List<TechnicalChief> allTechnicalChiefs;
 
     // NOUVEAU : Le constructeur de la classe
-    public GameWorld() {
+    private GameWorld() {
         // On déplace tout le code de création ici
         this.currentYear = 2025;
 
@@ -67,6 +76,16 @@ public class GameWorld {
 
 
 
+    }
+
+    // --- NOUVEAU : Une méthode pratique ---
+    public Team findTeamByName(String name) {
+        for (Team team : allTeams) {
+            if (team.name.equals(name)) {
+                return team;
+            }
+        }
+        return null; // Si on ne trouve pas l'écurie
     }
     // On ajoutera plus tard les pilotes à la retraite, les jeunes qui attendent, etc.
     // List<Driver> retiredDrivers;
