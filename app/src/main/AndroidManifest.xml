@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.F1Simulator">
         <activity
+            android:name=".DriverDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".TeamDetailActivity"
             android:exported="false" />
         <activity

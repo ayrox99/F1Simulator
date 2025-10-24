@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".DriverDetailActivity"
+    tools:background="#222222">
+
+    <!-- Titre : Nom du Pilote -->
+    <TextView
+        android:id="@+id/driverNameTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Charles Leclerc" />
+
+    <!-- Séparateur -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toBottomOf="@id/driverNameTitleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- === LISTE DE STATS ALIGNÉE À GAUCHE === -->
+
+    <!-- Pace -->
+    <TextView
+        android:id="@+id/paceLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Pace:"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider"/>
+
+    <TextView
+        android:id="@+id/paceValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/paceLabelTextView"
+        app:layout_constraintBaseline_toBaselineOf="@id/paceLabelTextView"
+        tools:text="95" />
+
+    <!-- Consistency -->
+    <TextView
+        android:id="@+id/consistencyLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Consistency:"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/paceLabelTextView"/>
+
+    <TextView
+        android:id="@+id/consistencyValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/consistencyLabelTextView"
+        app:layout_constraintBaseline_toBaselineOf="@id/consistencyLabelTextView"
+        tools:text="90" />
+
+    <!-- Overtaking -->
+    <TextView
+        android:id="@+id/overtakingLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Overtaking:"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/consistencyLabelTextView"/>
+
+    <TextView
+        android:id="@+id/overtakingValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/overtakingLabelTextView"
+        app:layout_constraintBaseline_toBaselineOf="@id/overtakingLabelTextView"
+        tools:text="92" />
+
+    <!-- Defending -->
+    <TextView
+        android:id="@+id/defendingLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Defending:"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/overtakingLabelTextView"/>
+
+    <TextView
+        android:id="@+id/defendingValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/defendingLabelTextView"
+        app:layout_constraintBaseline_toBaselineOf="@id/defendingLabelTextView"
+        tools:text="88" />
+
+    <!-- Tyre Management -->
+    <TextView
+        android:id="@+id/tyreManagementLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tyre Management:"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/defendingLabelTextView"/>
+
+    <TextView
+        android:id="@+id/tyreManagementValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tyreManagementLabelTextView"
+        app:layout_constraintBaseline_toBaselineOf="@id/tyreManagementLabelTextView"
+        tools:text="94" />
+
+    <!-- Wet Weather -->
+    <TextView
+        android:id="@+id/wetWeatherLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Wet Weather:"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tyreManagementLabelTextView"/>
+
+    <TextView
+        android:id="@+id/wetWeatherValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/wetWeatherLabelTextView"
+        app:layout_constraintBaseline_toBaselineOf="@id/wetWeatherLabelTextView"
+        tools:text="96" />
+
+    <!-- Composure -->
+    <TextView
+        android:id="@+id/composureLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Composure:"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wetWeatherLabelTextView"/>
+
+    <TextView
+        android:id="@+id/composureValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/composureLabelTextView"
+        app:layout_constraintBaseline_toBaselineOf="@id/composureLabelTextView"
+        tools:text="85" />
+
+    <!-- Development Skill -->
+    <TextView
+        android:id="@+id/developmentSkillLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Development Skill:"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/composureLabelTextView"/>
+
+    <TextView
+        android:id="@+id/developmentSkillValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/developmentSkillLabelTextView"
+        app:layout_constraintBaseline_toBaselineOf="@id/developmentSkillLabelTextView"
+        tools:text="80" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
