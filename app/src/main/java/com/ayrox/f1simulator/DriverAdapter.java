@@ -13,18 +13,48 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.DriverView
 
     private List<Driver> driverList;
 
+    // --- NOUVEAU (Partie 1) ---
+    // L'interface "contrat" pour le clic
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+    // -------------------------
+
+    // --- NOUVEAU (Partie 2) ---
+    // La variable pour stocker l'écouteur
+    private OnItemClickListener listener;
+    // -------------------------
+
+    // --- NOUVEAU (Partie 3) ---
+    // La méthode "setter" pour que l'Activity s'enregistre
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     public DriverAdapter(List<Driver> driverList) {
         this.driverList = driverList;
     }
 
     // Le ViewHolder fait maintenant référence à notre item_driver.xml
-    public static class DriverViewHolder extends RecyclerView.ViewHolder {
+    public class DriverViewHolder extends RecyclerView.ViewHolder {
         public TextView driverNameTextView;
 
         public DriverViewHolder(@NonNull View itemView) {
             super(itemView);
             // On fait le lien avec l'ID de notre layout item_driver.xml
             driverNameTextView = itemView.findViewById(R.id.driverNameTextView);
+
+            // --- NOUVEAU (Partie 4) ---
+            // On ajoute le détecteur de clic sur la ligne entière
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 
