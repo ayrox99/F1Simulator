@@ -22,60 +22,50 @@ public class GameWorld {
 
     // NOUVEAU : Le constructeur de la classe
     private GameWorld() {
-        // On déplace tout le code de création ici
         this.currentYear = 2025;
-
-        // On initialise nos listes pour éviter les erreurs
         this.allTeams = new ArrayList<>();
         this.allDrivers = new ArrayList<>();
         this.allTechnicalChiefs = new ArrayList<>();
 
-        // Création de l'écurie Mercedes
-        Team mercedes = new Team();
-        mercedes.name = "Mercedes-AMG Petronas";
-        mercedes.base = "Brackley, UK";
-        mercedes.budget = 500000000.0;
-        mercedes.drivers = new ArrayList<>();
+        // --- CRÉATION DES PILOTES (Maintenant beaucoup plus simple !) ---
+        // Génère 2 pilotes "star" avec des stats entre 85 et 99
+        Driver driver1 = new Driver(85, 99);
+        Driver driver2 = new Driver(83, 98);
 
-        // Création du pilote Hamilton
-        Driver hamilton = new Driver();
-        hamilton.firstName = "Lewis";
-        hamilton.lastName = "Hamilton";
-        hamilton.age = 40;
-        hamilton.currentSkills = new DriverSkills();
-        hamilton.currentSkills.pace = 95;
+        // Génère 2 pilotes "milieu de grille" avec des stats entre 70 et 85
+        Driver driver3 = new Driver(70, 85);
+        Driver driver4 = new Driver(72, 84);
 
-        // Création de l'écurie Ferrari
-        Team ferrari = new Team();
-        ferrari.name = "Ferrari";
-        ferrari.base = "Maranello";
-        ferrari.budget = 500000000.0;
-        ferrari.drivers = new ArrayList<>();
+        // --- CRÉATION DES ÉCURIES (Inchangé, mais on utilise les pilotes générés) ---
+        Team teamA = new Team();
+        teamA.name = "Écurie A";
+        teamA.drivers = new ArrayList<>();
+        teamA.drivers.add(driver1);
+        teamA.drivers.add(driver3);
+        // On met des stats de voiture pour le test
+        teamA.aeroPerformance = 90;
+        teamA.enginePerformance = 95;
+        teamA.chassisPerformance = 88;
+        teamA.reliability = 92;
 
-        // Création du pilote Leclerc
-        Driver leclerc = new Driver();
-        leclerc.firstName = "Charles";
-        leclerc.lastName = "Leclerc";
-        leclerc.age = 26;
-        leclerc.currentSkills = new DriverSkills();
-        leclerc.currentSkills.pace = 95;
+        Team teamB = new Team();
+        teamB.name = "Écurie B";
+        teamB.drivers = new ArrayList<>();
+        teamB.drivers.add(driver2);
+        teamB.drivers.add(driver4);
+        // Stats de voiture
+        teamB.aeroPerformance = 92;
+        teamB.enginePerformance = 93;
+        teamB.chassisPerformance = 90;
+        teamB.reliability = 90;
 
-        // Création de l'écurie RedBull
-        Team redbull = new Team();
-        redbull.name = "Red Bull";
-        redbull.base = "Angleterre";
-        redbull.budget = 500000000.0;
-        redbull.drivers = new ArrayList<>();
-
-        // On lie le pilote à l'écurie et on ajoute l'écurie au monde
-        ferrari.drivers.add(leclerc);
-        mercedes.drivers.add(hamilton);
-        this.allTeams.add(ferrari);
-        this.allTeams.add(mercedes);
-        this.allTeams.add(redbull);
-
-
-
+        // On ajoute tout au monde
+        this.allTeams.add(teamA);
+        this.allTeams.add(teamB);
+        this.allDrivers.add(driver1);
+        this.allDrivers.add(driver2);
+        this.allDrivers.add(driver3);
+        this.allDrivers.add(driver4);
     }
 
     // --- NOUVEAU : Une méthode pratique ---
